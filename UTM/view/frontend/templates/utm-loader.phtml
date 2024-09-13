@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var Magenest\UTM\Block\Html\UTMLoader $block
+ * @var Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+?>
+<?php if ($block->isActive() && ($utmString = $block->getUtmParamsString())): ?>
+    <?php
+        $scriptString = <<<script
+            let url = new URL(window.location.href);
+            url.search = "{$utmString}";
+            window.history.pushState({}, '', url);
+        script;
+    ?>
+    <?= $secureRenderer->renderTag('script', [], $scriptString, false); ?>
+<?php endif; ?>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="200">
+            <label>Magenest</label>
+        </tab>
+        <section id="magenest_utm" translate="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>UTM</label>
+            <class>separator-top</class>
+            <tab>magenest</tab>
+            <resource>Magenest_UTM::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General</label>
+                <field id="ethical_page" translate="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Ethical Page</label>
+                    <frontend_model>Magenest\UTM\Block\Adminhtml\System\Config\Form\Field\UrlKeyEthicalPage</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <comment>Utm will not process on ethical pages</comment>
+                </field>
+                <field id="website_ids" translate="label" type="multiselect" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Websites</label>
+                    <source_model>Magenest\UTM\Model\System\Config\Source\Website</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
