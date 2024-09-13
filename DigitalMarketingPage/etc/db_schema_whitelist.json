@@ -1,0 +1,60 @@
+{
+    "magenest_result_survey": {
+        "column": {
+            "id": true,
+            "telephone_survey_id": true,
+            "question_group_id": true,
+            "question_group": true,
+            "question_answers": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_RESULT_SURVEY_TELEPHONE_SURVEY_ID_MAGENEST_TELEPHONE_SURVEY_ID": true
+        }
+    },
+    "magenest_telephone_survey": {
+        "column": {
+            "id": true,
+            "telephone": true,
+            "used": true,
+            "store_id" : true,
+            "store": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "magenest_question_group": {
+        "column": {
+            "id": true,
+            "question_group": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "magenest_question": {
+        "column": {
+            "id": true,
+            "question": true,
+            "question_group_id": true,
+            "question_type": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_QUESTION_QUESTION_GROUP_ID_MAGENEST_QUESTION_GROUP_ID": true
+        }
+    },
+    "magenest_answer": {
+        "column": {
+            "id": true,
+            "answer": true,
+            "true_answer": true,
+            "question_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_ANSWER_QUESTION_ID_MAGENEST_QUESTION_ID": true
+        }
+    }
+}

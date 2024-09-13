@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author DungTNA Magenest
+ * @copyright Copyright (c) 2023
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_submit_before">
+        <observer name="add_reservation_item" instance="Magenest\ImportTelephone\Observer\Model\QuoteManagement" />
+    </event>
+</config>

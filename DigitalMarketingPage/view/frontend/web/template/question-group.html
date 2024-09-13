@@ -1,0 +1,63 @@
+<div class="title">
+    <p data-bind="text: getTitle()"></p>
+</div>
+<div class="content">
+    <div class="button-start" if="showButtonStart()">
+        <button type="button" data-trigger="trigger" data-bind="i18n: 'Start Question', click: start"></button>
+    </div>
+
+    <div class="register-form" if="showRegisterForm()" data-bind="blockLoader: isRegisterFormLoading">
+        <form class="form" method="get" data-bind="submit:register">
+            <fieldset class="fieldset row">
+                <div class="fields col-md-6">
+                    <div class="field telephone required">
+                        <label class="label" data-bind="i18n: 'Telephone', attr: {for: 'telephone'}"></label>
+                        <div class="control">
+                            <input class="input-text"
+                                   type="text"
+                                   id="telephone"
+                                   name="telephone"
+                                   data-validate="{required:true, 'phone-validate':true}"
+                                   data-bind="value: telephone, attr:{placeholder: $t('Telephone')} "/>
+                            <div class="mage-error" data-bind="text: messageLimitNumberUsesTelephone()"
+                                 if="showErrorLimitNumberUsesTelephone()"></div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="submit-register" title="Register">
+                        <span data-bind="i18n: 'Register'"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="question-answers-form" if="showQuestionAnswersForm()"
+         data-bind="blockLoader: isQuestionAnswersFormLoading">
+        <form class="form" method="post" data-bind="submit:complete">
+            <fastForEach args="data: questionAnswerElement, as: '$row'">
+                <render args="$row.getBody()"></render>
+            </fastForEach>
+            <div class="result" if="showResult()">
+                <div class="section">
+                    <p data-bind="i18n: 'True Answers'"></p>
+                    <p data-bind="html: textResult()"></p>
+                </div>
+                <div class="progress-bar" data-bind="foreach: progressBarResult()">
+                    <div data-bind=" attr: { class: current ? 'current' : ''}"></div>
+                </div>
+            </div>
+            <div class="mage-error" data-bind="text: messageError" if="showErrorComplete()"></div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="submit-complete" title="Complete Question Group">
+                        <span data-bind="i18n: 'Complete Question Group'"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

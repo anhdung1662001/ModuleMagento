@@ -1,0 +1,27 @@
+<?php
+/**
+ * @var Magenest\DigitalMarketingPage\Block\Widget\QuestionGroup $block
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+?>
+<?php if ($block->isShow()): ?>
+    <div class="question-group" data-bind="scope: 'question-group'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+    <?php $scriptString = <<<script
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "question-group": {
+                            "component": "Magenest_DigitalMarketingPage/js/question-group",
+                            "data": {$block->getDataJson()}
+                        }
+                    }
+                }
+            }
+        }
+        script;
+    ?>
+    <?= $secureRenderer->renderTag('script', ['type' => 'text/x-magento-init'], $scriptString, false); ?>
+<?php endif; ?>

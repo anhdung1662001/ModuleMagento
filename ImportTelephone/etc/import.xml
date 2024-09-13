@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="magenest_import_telephone_new" label="Magenest Import Telephone New"
+            model="Magenest\ImportTelephone\Model\Import\NewTelephone"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+    <entity name="magenest_import_telephone_old" label="Magenest Import Telephone Old"
+            model="Magenest\ImportTelephone\Model\Import\OldTelephone"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+</config>

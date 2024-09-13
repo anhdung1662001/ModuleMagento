@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="200">
+            <label>Magenest</label>
+        </tab>
+        <section id="magenest_digital_marketing" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Digital Marketing Page</label>
+            <class>separator-top</class>
+            <tab>magenest</tab>
+            <resource>Magenest_DigitalMarketingPage::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="limit_number_uses_telephone" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>limit Number Uses Telephone</label>
+                </field>
+            </group>
+
+            <group id="popup_template" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Popup Template</label>
+                <field id="cms_block_success" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select CMS Block Success</label>
+                    <source_model>Magenest\DigitalMarketingPage\Model\Config\Source\Block</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="cms_block_failure" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select CMS Block Failure</label>
+                    <source_model>Magenest\DigitalMarketingPage\Model\Config\Source\Block</source_model>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

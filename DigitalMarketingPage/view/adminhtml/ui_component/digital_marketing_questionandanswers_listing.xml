@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">digital_marketing_questionandanswers_listing.digital_marketing_questionandanswers_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>digital_marketing_questionandanswers_columns</spinner>
+        <deps>
+            <dep>digital_marketing_questionandanswers_listing.digital_marketing_questionandanswers_listing_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="add">
+                <url path="*/*/edit"/>
+                <class>primary</class>
+                <label translate="true">Add new Question</label>
+            </button>
+        </buttons>
+    </settings>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters" />
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <dataSource name="digital_marketing_questionandanswers_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+        </settings>
+        <aclResource>Magenest_DigitalMarketingPage::question_answers</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="digital_marketing_questionandanswers_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <!-- columns -->
+    <columns name="digital_marketing_questionandanswers_columns">
+        <!-- Column id -->
+        <column name="id" sortOrder="10">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+
+        <!-- Column name -->
+        <column name="question_group" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Question Group</label>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="Magenest\DigitalMarketingPage\Ui\Component\Listing\Grid\Column\QuestionAnswers\Action">
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

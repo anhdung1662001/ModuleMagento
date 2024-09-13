@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="100">
+            <label>Magenest</label>
+        </tab>
+        <section id="import" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1"
+                 showInStore="0">
+            <label>Telephone Number Discount</label>
+            <tab>magenest</tab>
+            <resource>Magenest_ImportTelephone::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General Setting</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable/Disable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[<strong class="colorRed">Notice!</strong> Select "Yes" to enable this module, "No" to disable.]]>
+                    </comment>
+                </field>
+                <field id="category_apply_rule" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Category Apply Rule 8-10%</label>
+                    <source_model>Magenest\ExtendCatalog\Model\Config\Source\CategoryList</source_model>
+                    <comment>
+                        <![CDATA[<strong class="colorRed">Notice!</strong> Select 1 category to apply 8-10% discount code. ]]>
+                    </comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="enabled_new" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable/Disable discount new phone number</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[<strong class="colorRed">Notice!</strong> Select "Yes" to enable discount for new phone number, "No" to disable.]]>
+                    </comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="new" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Discount rate for new phone number group</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_new">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[Discount rate for new phone number group.]]>
+                    </comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-0-100</validate>
+                </field>
+                <field id="max_discount_new" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Maximum amount of discount for new telephone</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_new">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[Maximum amount of discount for new telephone.Ex: 300000 </br>
+                        <strong class="colorRed">If you don't need the maximum amount discount please leave this input blank.</strong>
+                        ]]>
+                    </comment>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="enabled_old" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable/Disable discount old phone number</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[<strong class="colorRed">Notice!</strong> Select "Yes" to enable discount for old phone number, "No" to disable.]]>
+                    </comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="old" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Discount rate for old phone number group</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_old">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[Discount rate for old phone number group.]]>
+                    </comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-0-100</validate>
+                </field>
+                <field id="max_discount_old" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Maximum amount of discount for old telephone</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_old">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[Maximum amount of discount for old telephone. Ex: 250000</br>
+                        <strong class="colorRed">If you don't need the maximum amount discount please leave this input blank.</strong>
+                        ]]>
+                    </comment>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="rule_discount_new_customer" translate="label" sortOrder="99" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Rule Discount Apply By New Customer</label>
+                    <frontend_model>Magenest\ImportTelephone\Block\Adminhtml\Form\Field\RuleDiscountByNewCustomer</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <field id="rule_discount_old_customer" translate="label" sortOrder="99" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Rule Discount Apply By Old Customer</label>
+                    <frontend_model>Magenest\ImportTelephone\Block\Adminhtml\Form\Field\RuleDiscountByOldCustomer</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+                <field id="popup_message_old" translate="label" type="text" sortOrder="99" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Message For Old Telephone</label>
+                    <comment>
+                        <![CDATA[<strong class="colorRed">Notice!</strong> Input message to display in popup for old telephone.]]>
+                    </comment>
+                </field>
+                <field id="popup_message_new" translate="label" type="text" sortOrder="99" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Message For New Telephone</label>
+                    <comment>
+                        <![CDATA[<strong class="colorRed">Notice!</strong> Input message to display in popup for new telephone.]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

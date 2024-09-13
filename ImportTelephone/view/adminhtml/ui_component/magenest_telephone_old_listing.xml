@@ -1,0 +1,98 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">magenest_telephone_old_listing.magenest_telephone_old_listing_data_source</item>
+            <item name="deps" xsi:type="string">magenest_telephone_old_listing.magenest_telephone_old_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">spinner_columns</item>
+    </argument>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <exportButton name="export_button"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+<!--        <massaction name="listing_massaction">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--            <action name="delete">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="type" xsi:type="string">delete</item>-->
+<!--                        <item name="label" xsi:type="string" translate="true">Delete</item>-->
+<!--                        <item name="url" xsi:type="url" path="*/*/delete"/>-->
+<!--                        <item name="confirm" xsi:type="array">-->
+<!--                            <item name="title" xsi:type="string" translate="true">Delete Row</item>-->
+<!--                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete-->
+<!--                                selected items?-->
+<!--                            </item>-->
+<!--                        </item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--            </action>-->
+<!--        </massaction>-->
+    </listingToolbar>
+    <dataSource name="nameOfDataSource">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">magenest_telephone_old_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <columns name="spinner_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Id</item>
+                </item>
+            </argument>
+        </column>
+        <column name="telephone">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Telephone</item>
+                </item>
+            </argument>
+        </column>
+        <column name="brand_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Brand Name</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

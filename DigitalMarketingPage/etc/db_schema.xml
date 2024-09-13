@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="magenest_result_survey" resource="default" engine="innodb" comment="Result Survey">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="int" name="telephone_survey_id" padding="10" unsigned="true" nullable="true"/>
+        <column xsi:type="int" name="question_group_id" padding="10" unsigned="true" nullable="true"/>
+        <column xsi:type="varchar" name="question_group" nullable="true" length="255"/>
+        <column xsi:type="text" name="question_answers" nullable="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MAGENEST_RESULT_SURVEY_TELEPHONE_SURVEY_ID_MAGENEST_TELEPHONE_SURVEY_ID"
+                    table="magenest_result_survey"
+                    column="telephone_survey_id" referenceTable="magenest_telephone_survey" referenceColumn="id"
+                    onDelete="CASCADE"/>
+    </table>
+
+    <table name="magenest_telephone_survey" resource="default" engine="innodb" comment="Telephone Survey">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="telephone" nullable="false" comment="Telephone" length="255"/>
+        <column xsi:type="int" name="used" nullable="false" default="1"/>
+        <column xsi:type="varchar" name="store_id" nullable="true" comment="Store Id" length="255"/>
+        <column xsi:type="varchar" name="store" nullable="true" comment="Store" length="255"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="magenest_question_group" resource="default" engine="innodb" comment="Question Survey">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="question_group" nullable="true" comment="Name Question Group" length="255"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+    </table>
+
+    <table name="magenest_question" resource="default" engine="innodb" comment="Question Survey">
+        <column xsi:type="int" name="id" padding="10" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="question" nullable="true" comment="Name Question" length="255"/>
+        <column xsi:type="int" name="question_group_id" padding="10" unsigned="true" nullable="true"
+                comment="Question Group ID"/>
+        <column xsi:type="int" name="question_type" padding="10" unsigned="false" nullable="true"
+                comment="Question Type"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MAGENEST_QUESTION_QUESTION_GROUP_ID_MAGENEST_QUESTION_GROUP_ID"
+                    table="magenest_question"
+                    column="question_group_id" referenceTable="magenest_question_group" referenceColumn="id"
+                    onDelete="CASCADE"/>
+    </table>
+
+    <table name="magenest_answer" resource="default" engine="innodb" comment="Answer">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="answer" nullable="true" comment="Answer" length="255"/>
+        <column xsi:type="varchar" name="true_answer" nullable="true" comment="True Answer" length="255"/>
+        <column xsi:type="int" name="question_id" padding="10" unsigned="false" nullable="true" comment="Question ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MAGENEST_ANSWER_QUESTION_ID_MAGENEST_QUESTION_ID"
+                    table="magenest_answer"
+                    column="question_id" referenceTable="magenest_question" referenceColumn="id"
+                    onDelete="CASCADE"/>
+    </table>
+</schema>

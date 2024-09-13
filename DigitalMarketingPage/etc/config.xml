@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magenest_digital_marketing>
+            <general>
+                <limit_number_uses_telephone>3</limit_number_uses_telephone>
+            </general>
+            <popup_template>
+                <cms_block_success>question-group-success</cms_block_success>
+                <cms_block_failure>question-group-failure</cms_block_failure>
+            </popup_template>
+        </magenest_digital_marketing>
+    </default>
+</config>

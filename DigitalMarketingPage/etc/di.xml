@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="digital_marketing_question_answers_collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_question_group</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Magenest\DigitalMarketingPage\Model\ResourceModel\QuestionGroup
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="digital_marketing_questionandanswers_listing_data_source" xsi:type="string">digital_marketing_question_answers_collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="digital_marketing_result_survey_collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_telephone_survey</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Magenest\DigitalMarketingPage\Model\ResourceModel\TelephoneSurvey
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="digital_marketing_resultsurvey_listing_data_source" xsi:type="string">digital_marketing_result_survey_collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magenest\DigitalMarketingPage\Api\Data\QuestionGroupManagementInterface" type="Magenest\DigitalMarketingPage\Model\Api\QuestionGroupManagement" />
+</config>

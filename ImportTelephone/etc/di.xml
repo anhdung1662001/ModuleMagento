@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="magenest_import_telephone_new" xsi:type="string">Magenest_ImportTelephone</item>
+                <item name="magenest_import_telephone_old" xsi:type="string">Magenest_ImportTelephone</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Quote\Model\Cart\CartTotalRepository">
+        <plugin name="add_custom_discount_phone_number"
+                type="Magenest\ImportTelephone\Plugin\DiscountPhoneNumber"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Invoice\Total\AbstractTotal">
+        <plugin name="add_telephone_number_discount_invoice"
+                type="Magenest\ImportTelephone\Plugin\AddDiscountInvoice"/>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magenest_telephone_new_listing_data_source" xsi:type="string">magenest_telephone_number_new_collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="magenest_telephone_number_new_collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_telephone_new</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\ImportTelephone\Model\ResourceModel\TelephoneNew</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magenest_telephone_old_listing_data_source" xsi:type="string">magenest_telephone_number_old_collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="magenest_telephone_number_old_collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_telephone_old</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\ImportTelephone\Model\ResourceModel\OldTelephone</argument>
+        </arguments>
+    </virtualType>
+    <!--API Save old telephone customer-->
+    <preference for="Magenest\ImportTelephone\Api\OldTelephoneRepositoryInterface" type="Magenest\ImportTelephone\Model\OldTelephoneRepository" />
+    <preference for="Magenest\ImportTelephone\Api\Data\MessageInterface" type="Magenest\ImportTelephone\Model\Message" />
+
+    <preference for="Magenest\ImportTelephone\Api\EthicalCustomerRepositoryInterface" type="Magenest\ImportTelephone\Model\EthicalCustomerRepository" />
+    <preference for="Magenest\ImportTelephone\Api\Data\EthicalCustomerInterface" type="Magenest\ImportTelephone\Model\EthicalCustomer" />
+    <preference for="Magenest\ImportTelephone\Api\Data\EthicalDataInterface" type="Magenest\ImportTelephone\Model\EthicalData" />
+</config>

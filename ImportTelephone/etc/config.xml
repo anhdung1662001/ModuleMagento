@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <import>
+            <general>
+                <enabled>1</enabled>
+                <enabled_new>1</enabled_new>
+                <new>10</new>
+                <max_discount_new>300000</max_discount_new>
+                <enabled_old>1</enabled_old>
+                <old>8</old>
+                <max_discount_old>250000</max_discount_old>
+                <popup_message_old>Khuyến mãi này không áp dụng cho số điện thoại này!</popup_message_old>
+                <popup_message_new>Khuyến mãi này không áp dụng cho số điện thoại này!</popup_message_new>
+            </general>
+        </import>
+    </default>
+</config>

@@ -1,0 +1,35 @@
+<fieldset class="fieldset row">
+    <div class="fields col-md-6">
+        <div class="field question-answer required">
+            <div class="question">
+                <div class="index" data-bind="text: getIndex()"></div>
+                <div class="content" data-bind="text: getQuestionEscaper()"></div>
+            </div>
+            <div class="answers">
+                <div class="list" data-bind="foreach: getAnswers()" if="!isMultiple()">
+                    <div class="single-choice field" data-bind=" attr: { 'data-answer': answer_id}">
+                        <input type="radio"
+                               data-bind="
+                           attr: { name: 'question_answer_'+$parent.getIndex(), value: answer_id},
+                           click: $parent.choice.bind($parent)">
+                        <label class="label">
+                            <span data-bind="text: $parent.getAnswerEscaper(answer)"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="list" data-bind="foreach: getAnswers()" if="isMultiple()">
+                    <div class="multiple-choice field" data-bind=" attr: { 'data-answer': answer_id}">
+                        <input type="checkbox"
+                               data-bind="
+                           attr: { name: 'question_answer_'+$parent.getIndex()+'[]', value: answer_id},
+                           click: $parent.choice.bind($parent)">
+                        <label class="label">
+                            <span data-bind="text: $parent.getAnswerEscaper(answer)"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="answer-error mage-error" if="showError()" data-bind="text: messageError"></div>
+            </div>
+        </div>
+    </div>
+</fieldset>

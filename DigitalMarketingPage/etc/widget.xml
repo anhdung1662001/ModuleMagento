@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Magenest\DigitalMarketingPage\Block\Widget\QuestionGroup" id="magenest_question_group">
+        <label>Question Group</label>
+        <description>Question Group Widget</description>
+        <parameters>
+            <parameter name="title" sort_order="1" visible="true" xsi:type="text">
+                <label>Title</label>
+            </parameter>
+            <parameter name="limit" sort_order="2" visible="true" xsi:type="text">
+                <label>Limit</label>
+                <description>Leave this field blank if you want to get them all</description>
+            </parameter>
+            <parameter name="number_true_answers_to_receive_reward" sort_order="3" visible="true" xsi:type="text">
+                <label>Number of true answers to receive a reward</label>
+                <description>Leave this field blank if you want all to be true</description>
+            </parameter>
+            <parameter required="true" name="question_group_id" xsi:type="select" source_model="Magenest\DigitalMarketingPage\Model\Config\Source\QuestionGroup" visible="true" sort_order="4" >
+                <label translate="true">Select Question Group</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

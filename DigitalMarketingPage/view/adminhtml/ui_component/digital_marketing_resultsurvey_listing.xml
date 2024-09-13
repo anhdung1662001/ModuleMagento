@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">digital_marketing_resultsurvey_listing.digital_marketing_resultsurvey_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>digital_marketing_resultsurvey_columns</spinner>
+        <deps>
+            <dep>digital_marketing_resultsurvey_listing.digital_marketing_resultsurvey_listing_data_source</dep>
+        </deps>
+    </settings>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters" />
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <dataSource name="digital_marketing_resultsurvey_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+        </settings>
+        <aclResource>Magenest_DigitalMarketingPage::result_survey</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="digital_marketing_resultsurvey_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <columns name="digital_marketing_resultsurvey_columns">
+        <column name="id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="telephone">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Telephone</label>
+            </settings>
+        </column>
+        <column name="used">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Used</label>
+            </settings>
+        </column>
+        <column name="store">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Store</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Magenest\DigitalMarketingPage\Ui\Component\Listing\Grid\Column\ResultSurvey\Action">
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

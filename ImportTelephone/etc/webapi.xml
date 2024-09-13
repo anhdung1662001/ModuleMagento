@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/save/oldtelephone/:telephone" method="POST">
+        <service class="Magenest\ImportTelephone\Api\OldTelephoneRepositoryInterface" method="save" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V2/save/oldtelephone" method="POST">
+        <service class="Magenest\ImportTelephone\Api\OldTelephoneRepositoryInterface" method="save" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/get/ethical-customer-list" method="GET">
+        <service class="Magenest\ImportTelephone\Api\EthicalCustomerRepositoryInterface" method="getList" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>

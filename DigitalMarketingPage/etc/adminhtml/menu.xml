@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_DigitalMarketingPage::digital_marketing"
+             title="Digital Marketing"
+             module="Magenest_DigitalMarketingPage"
+             sortOrder="122"
+             parent="Magenest_Menu::menu"
+             resource="Magenest_DigitalMarketingPage::digital_marketing"/>
+        <add id="Magenest_DigitalMarketingPage::question_answers"
+             sortOrder="1"
+             title="Question And Answers"
+             module="Magenest_DigitalMarketingPage"
+             parent="Magenest_DigitalMarketingPage::digital_marketing"
+             resource="Magenest_DigitalMarketingPage::digital_marketing"
+             translate="title"
+             action="digital_marketing/questionAndAnswers"/>
+        <add id="Magenest_DigitalMarketingPage::result_survey"
+             sortOrder="2"
+             title="Result Survey"
+             module="Magenest_DigitalMarketingPage"
+             parent="Magenest_DigitalMarketingPage::digital_marketing"
+             resource="Magenest_DigitalMarketingPage::digital_marketing"
+             translate="title"
+             action="digital_marketing/resultSurvey"/>
+        <add id="Magenest_DigitalMarketingPage::configuration"
+             sortOrder="3"
+             title="Configuration"
+             module="Magenest_DigitalMarketingPage"
+             parent="Magenest_DigitalMarketingPage::digital_marketing"
+             resource="Magenest_DigitalMarketingPage::digital_marketing"
+             translate="title"
+             action="admin/system_config/edit/section/magenest_digital_marketing"/>
+    </menu>
+</config>

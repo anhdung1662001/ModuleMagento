@@ -1,0 +1,100 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// TODO: Temporary implementation. UI components rework needed.
+// TODO: Form validation when no source is set
+
+// @codingStandardsIgnoreFile
+
+/** @var Magenest\DigitalMarketingPage\Block\Adminhtml\ResultSurvey\Form\Grid\QuestionAndAnswers $block
+ *  @var Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ * */
+?>
+<div class="result-survey-detail">
+    <?php foreach ($block->getCollection() as $item): ?>
+        <div class="item">
+            <div class="title"><?= $block->escapeHtml($item->getQuestionGroup())?></div>
+            <div class="total-true-answer">
+                <span><?= __('True')?>: </span><span><?= $block->getTotalTrueAnswer($questionAnswers = json_decode($item->getQuestionAnswers(), true))?></span>
+            </div>
+            <table class="admin__table-primary">
+                <?php foreach($questionAnswers as $questionAnswer): ?>
+                    <tbody>
+                    <tr>
+                        <th class="<?= $questionAnswer['curren_answer_is_true_answer'] ? 'true' : 'wrong'?>">Question: <?= $block->escapeHtml($questionAnswer['question'])?></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><?= /* @noEscape */__('True Answer') ?>:</p>
+                            <ul>
+                                <?php foreach ($questionAnswer['answers']['true_answers'] as $trueAnswer): ?>
+                                    <li><?= $block->escapeHtml($trueAnswer)?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><?= /* @noEscape */__('Customer Answer') ?>:</p>
+                            <ul>
+                                <?php foreach ($questionAnswer['answers']['current_answers'] as $customerAnswer): ?>
+                                    <li><?= $block->escapeHtml($customerAnswer)?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                    </tr>
+                    </tbody>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<?php if ($block->isShowPageToolbar()): ?>
+    <div class="admin__data-grid-pager result-survey-pager">
+        <button class="action-previous" type="button"></button>
+        <label class="admin__control-support-text current-page-input"><?= $currentPage = $block->geCurrentPage()?></label>
+        <label class="admin__control-support-text">of <?= $totalPage = $block->geTotalPage()?></label>
+        <button class="action-next" type="button"></button>
+    </div>
+
+
+    <?php $scriptString = <<<script
+        require(['jquery'], function($){
+           $('.result-survey-pager .action-previous').click(function(){
+                loadGrid('previous');
+           });
+
+           $('.result-survey-pager .action-next').click(function(){
+                loadGrid('next');
+           });
+
+           function loadGrid(action) {
+                let totalPage = {$totalPage};
+                let current_page = {$currentPage};
+                let page = action == 'previous' ? current_page - 1 : current_page + 1;
+                if (page && page <= totalPage) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{$block->getUrl('digital_marketing/resultSurvey_view/listajax')}",
+                        dataType: "json",
+                        data: {current_page: page, id: {$block->getModelId()}},
+                        showLoader: true,
+                        success: function (response) {
+                            if (response.result_survey_html) {
+                                $('.result-survey-detail-grid').html(response.result_survey_html)
+                            }
+                        },
+                        error: function (jqXHR, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+           }
+        });
+    script;
+    ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false); ?>
+<?php endif; ?>

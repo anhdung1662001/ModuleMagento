@@ -1,0 +1,116 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// TODO: Temporary implementation. UI components rework needed.
+// TODO: Form validation when no source is set
+
+// @codingStandardsIgnoreFile
+
+/** @var Magenest\DigitalMarketingPage\Block\Adminhtml\ResultSurvey\Form\View $block
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ * */
+$model = $block->getTelephoneSurvey();
+?>
+<div class="page-main-actions">
+    <div class="page-actions">
+        <div class="page-actions-buttons">
+            <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
+                <div class="page-actions-inner" data-title="Toolbar Button">
+                    <div class="page-actions-buttons">
+                        <button
+                            id="back"
+                            title="Back"
+                            type="button"
+                            onclick="window.location.href = '<?= $block->getUrl('*/*/') ?>'"
+                            class="action back">
+                            <span><?= /* @noEscape */__('Back') ?></span>
+                        </button>
+
+                        <button id="delete"
+                                title="Delete"
+                                type="button"
+                                class="action- scalable delete"
+                                onclick="deleteConfirm('Are you sure you want to do this?','<?= $block->getDeleteUrl()?>')">
+                            <span>Delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-info">
+    <div class="content">
+        <div class="store"><?= __('Store') ?>: <?= $model->getStore() ?></div>
+        <div><?= __('Telephone') ?>: <?= $model->getTelephone() ?></div>
+        <div><?= __('Used') ?>: <?= $model->getUsed() ?></div>
+    </div>
+</div>
+<div class="result-survey-detail-grid">
+    <?= $block->getChildHtml() ?>
+</div>
+<?php
+$styles = <<<STYLE
+    .result-survey-pager {
+        float: right;
+    }
+    .result-survey-detail {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .result-survey-detail .item {
+        flex-basis: 49%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid;
+        padding: 25px;
+    }
+    .result-survey-detail .item .title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 25px;
+    }
+    .total-true-answer {
+        margin-bottom: 12px;
+        font-size: 18px;
+        float: right;
+    }
+    th.true{
+        background: #c6f9c8;
+    }
+    th.wrong{
+        background: #f9e1e1;
+    }
+    td ul {
+        margin-left: 40px;
+    }
+    .admin__table-primary th, .admin__table-primary td {
+        padding-left: 12px !important;
+    }
+
+    .main-info {
+        text-align: center;
+        margin-bottom: 23px;
+        font-size: 16px;
+    }
+    .main-info .content {
+        display: inline-block;
+        width: max-content;
+        margin: auto;
+        background-color: #ceeafb;
+        padding: 8px 22px;
+        border-radius: 11px;
+    }
+    .main-info .content .store {
+        font-weight: bold;
+        font-size: 28px;
+    }
+STYLE;
+?>
+<?= /* @noEscape */
+$secureRenderer->renderTag('style', [], $styles, false) ?>

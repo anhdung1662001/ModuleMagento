@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="//www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_ImportTelephone::log"
+             title="Import Telephone"
+             module="Magenest_ImportTelephone"
+             sortOrder="110"
+             parent="Magenest_Menu::menu"
+             resource="Magenest_ImportTelephone::listing"/>
+        <add id="Magenest_ImportTelephone::list_telephone"
+             title="List Telephone Old"
+             module="Magenest_ImportTelephone"
+             sortOrder="10"
+             action="telephone/telephone/oldtelephone"
+             resource="Magenest_ImportTelephone::listing"
+             parent="Magenest_ImportTelephone::log"/>
+        <add id="Magenest_ImportTelephone::config"
+             title="Telephone Discount Apply Configuration"
+             module="Magenest_ImportTelephone"
+             sortOrder="10"
+             action="adminhtml/system_config/edit/section/import/"
+             resource="Magenest_ImportTelephone::listing"
+             parent="Magenest_ImportTelephone::log"/>
+    </menu>
+</config>

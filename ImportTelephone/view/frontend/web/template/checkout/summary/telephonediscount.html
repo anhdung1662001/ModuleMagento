@@ -1,0 +1,10 @@
+<!-- ko ifnot: isEthical() -->
+    <!-- ko if: isDisplayedCustomdiscountTotal() -->
+    <tr class="total-rules">
+        <th class="mark" colspan="1" scope="row" data-bind="i18n: getTitle()"></th>
+        <td class="amount">
+            <span class="price" data-bind="text: getCustomdiscountTotal()"></span>
+        </td>
+    </tr>
+    <!-- /ko -->
+<!-- /ko -->

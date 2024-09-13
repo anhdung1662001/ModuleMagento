@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Special Promotions Base for Magento 2
+ */-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="magenest_telephone_new" resource="default" engine="innodb" comment="">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment=""/>
+        <column xsi:type="varchar" name="telephone" nullable="false" length="255" comment=""/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="magenest_telephone_old" resource="default" engine="innodb" comment="">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment=""/>
+        <column xsi:type="varchar" name="telephone" nullable="false" length="255" comment=""/>
+        <column xsi:type="varchar" name="brand_name" nullable="false" length="255" comment="Brand Name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="salesrule" resource="default" engine="innodb" comment="">
+        <column xsi:type="int" name="discount_by_telephone" padding="10" unsigned="true" nullable="false" comment=""/>
+    </table>
+    <table name="quote_item" resource="default" engine="innodb" comment="">
+        <column xsi:type="varchar" name="status_apply_rule" nullable="false" length="255" comment=""/>
+    </table>
+</schema>
